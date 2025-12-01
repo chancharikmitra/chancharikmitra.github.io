@@ -32,6 +32,7 @@
             --tag-pragmatics: #ec4899;
             --tag-vision-language: #10b981;
             --tag-robotics: #ef4444;
+            --tag-edai: #6366f1;
             
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
@@ -476,6 +477,7 @@
         .tag-filter[data-tag="pragmatics"] { border-color: var(--tag-pragmatics); color: var(--tag-pragmatics); }
         .tag-filter[data-tag="vision-language"] { border-color: var(--tag-vision-language); color: var(--tag-vision-language); }
         .tag-filter[data-tag="robotics"] { border-color: var(--tag-robotics); color: var(--tag-robotics); }
+        .tag-filter[data-tag="edai"] { border-color: var(--tag-edai); color: var(--tag-edai); }
 
         /* Filled background for active state */
         .tag-filter[data-tag="few-shot"].active { background: var(--tag-few-shot); color: white; }
@@ -484,6 +486,7 @@
         .tag-filter[data-tag="pragmatics"].active { background: var(--tag-pragmatics); color: white; }
         .tag-filter[data-tag="vision-language"].active { background: var(--tag-vision-language); color: white; }
         .tag-filter[data-tag="robotics"].active { background: var(--tag-robotics); color: white; }
+        .tag-filter[data-tag="edai"].active { background: var(--tag-edai); color: white; }
 
         .clear-filters {
             font-family: 'Inter', sans-serif;
@@ -582,6 +585,7 @@
         .pub-tag.pragmatics { background: var(--tag-pragmatics); }
         .pub-tag.vision-language { background: var(--tag-vision-language); }
         .pub-tag.robotics { background: var(--tag-robotics); }
+        .pub-tag.edai { background: var(--tag-edai); }
 
         .pub-links {
             display: flex;
@@ -789,7 +793,7 @@
                 </div>
                 <div class="header-info">
                     <h1>Chancharik Mitra</h1>
-                    <p class="tagline">MS in Machine Learning Student at Carnegie Mellon University</p>
+                    <p class="tagline">PhD Student @ MIT EECS (Incoming)</p>
                     
                     <div class="header-links">
                         <a href="mailto:chancharikm@gmail.com">
@@ -882,6 +886,7 @@
                 <button class="tag-filter" data-tag="pragmatics" onclick="toggleFilter('pragmatics')">Pragmatics</button>
                 <button class="tag-filter" data-tag="vision-language" onclick="toggleFilter('vision-language')">Vision-Language</button>
                 <button class="tag-filter" data-tag="robotics" onclick="toggleFilter('robotics')">Robotics</button>
+                <button class="tag-filter" data-tag="edai" onclick="toggleFilter('edai')">EdAI</button>
                 <button class="clear-filters" onclick="clearFilters()">Clear all</button>
             </div>
 
@@ -1042,7 +1047,7 @@
                 authors: ["Chancharik Mitra", "Mihran Miroyan", "Rishi Jain", "Gireeja Ranade", "Narges Norouzi"],
                 venue: "ACM Technical Symposium on Computer Science Education (SIGCSE), 2025",
                 year: 2025,
-                tags: [],
+                tags: ["edai"],
                 links: { paper: "#" },
                 bibtex: `@inproceedings{miroyan2025analyzing,
   title={Analyzing Pedagogical Quality and Efficiency of LLM Responses with TA Feedback to Live Student Questions},
@@ -1057,7 +1062,7 @@
                 authors: ["Meenakshi Mittal*", "Azalea Bailey*", "Victoria Phelps*", "Rose Niousha", "Mihran Miroyan", "Chancharik Mitra", "Rishi Jain", "Gireeja Ranade", "Narges Norouzi"],
                 venue: "ACM Technical Symposium on Computer Science Education (SIGCSE), 2025",
                 year: 2025,
-                tags: [],
+                tags: ["edai"],
                 links: { paper: "#" },
                 bibtex: `@inproceedings{mittal2025raising,
   title={Raising the Bar: Automating Consistent and Equitable Student Support with LLMs},
@@ -1072,7 +1077,7 @@
                 authors: ["Meenakshi Mittal", "Rishi Khare", "Mihran Miroyan", "Chancharik Mitra", "Narges Norouzi"],
                 venue: "AAAI Conference on Artificial Intelligence, 2025",
                 year: 2025,
-                tags: [],
+                tags: ["edai"],
                 links: { paper: "#" },
                 bibtex: `@inproceedings{mittal2025edumod,
   title={EduMod-LLM: A Modular Approach for Designing Flexible and Transparent Educational Assistants},
@@ -1128,7 +1133,7 @@
                 authors: ["Chancharik Mitra", "Mihran Miroyan", "Rishi Jain", "Vedant Kumud", "Gireeja Ranade", "Narges Norouzi"],
                 venue: "AAAI Conference on Artificial Intelligence, 2024",
                 year: 2024,
-                tags: [],
+                tags: ["edai"],
                 links: { paper: "#" },
                 bibtex: `@inproceedings{mitra2024retllm,
   title={RetLLM-E: Retrieval-Prompt Strategy for Question-Answering on Student Discussion Forums},
@@ -1145,7 +1150,7 @@
                 authors: ["Chancharik Mitra", "Mihran Miroyan", "Rishi Jain", "Vedant Kumud", "Gireeja Ranade", "Narges Norouzi"],
                 venue: "ACM Technical Symposium on Computer Science Education (SIGCSE), 2024",
                 year: 2024,
-                tags: [],
+                tags: ["edai"],
                 links: { paper: "#" },
                 bibtex: `@inproceedings{mitra2024elevating,
   title={Elevating Learning Experiences: Leveraging Large Language Models as Student-Facing Assistants in Discussion Forums},
@@ -1222,7 +1227,8 @@
                         'compositionality': 'Compositionality',
                         'pragmatics': 'Pragmatics',
                         'vision-language': 'Vision-Language',
-                        'robotics': 'Robotics'
+                        'robotics': 'Robotics',
+                        'edai': 'EdAI'
                     };
                     return `<span class="pub-tag ${tag}">${tagLabels[tag]}</span>`;
                 }).join('');
