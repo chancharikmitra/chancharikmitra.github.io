@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chancharik Mitra</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #fefdfb;
+            --bg-secondary: #f8f7f4;
+            --bg-accent: #f0eeea;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #717171;
+            --accent-primary: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e5e4e1;
+            --border-dark: #d1d0cd;
+            
+            /* Tag colors */
+            --tag-few-shot: #8b5cf6;
+            --tag-mech-interp: #06b6d4;
+            --tag-compositionality: #f59e0b;
+            --tag-pragmatics: #ec4899;
+            --tag-vision-language: #10b981;
+            --tag-robotics: #ef4444;
+            
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+
+            --nav-bg: rgba(254, 253, 251, 0.95);
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1a1a1a;
+            --bg-accent: #242424;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --accent-primary: #60a5fa;
+            --accent-hover: #93c5fd;
+            --border-color: #2a2a2a;
+            --border-dark: #3a3a3a;
+            
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.4);
+
+            --nav-bg: rgba(18, 18, 18, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth theme transitions */
+        body, nav, .publication, .tag-filter, .research-figure-container, 
+        .bibtex-modal, .bibtex-content, .figure-overlay {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Newsreader', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1.5rem;
+        }
+
+        .theme-toggle-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--border-dark);
+            color: var(--text-primary);
+        }
+
+        .theme-toggle-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle-btn .sun-icon { display: none; }
+        .theme-toggle-btn .moon-icon { display: block; }
+
+        [data-theme="dark"] .theme-toggle-btn .sun-icon { display: block; }
+        [data-theme="dark"] .theme-toggle-btn .moon-icon { display: none; }
+
+        .nav-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        /* Header / Hero */
+        .header {
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-placeholder {
+            width: 160px;
+            height: 160px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-accent) 100%);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        .header-info h1 {
+            font-size: 2.25rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header-info .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .header-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .header-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.2s ease;
+        }
+
+        .header-links a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        .header-links svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .bio {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .bio strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .advisor-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .advisor-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Research Figure Section */
+        .research-figure-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .research-figure-container {
+            border: 2px solid var(--border-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .research-figure-container:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .figure-expand-hint {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            opacity: 0.9;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .figure-expand-hint svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .research-figure-container:hover .figure-expand-hint {
+            opacity: 1;
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .research-figure {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .research-figure-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .research-figure-placeholder svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.5;
+        }
+
+        .figure-caption {
+            padding: 1rem 1.25rem;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .figure-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+
+        .figure-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Fullscreen overlay */
+        .figure-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+
+        .figure-overlay.active {
+            display: flex;
+        }
+
+        .figure-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .figure-overlay-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .figure-overlay-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section styling */
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Tags / Filters */
+        .tag-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag-filter {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.4rem 0.75rem;
+            border-radius: 100px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .tag-filter:hover {
+            border-color: var(--border-dark);
+        }
+
+        .tag-filter.active {
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Colored borders for inactive state */
+        .tag-filter[data-tag="few-shot"] { border-color: var(--tag-few-shot); color: var(--tag-few-shot); }
+        .tag-filter[data-tag="mech-interp"] { border-color: var(--tag-mech-interp); color: var(--tag-mech-interp); }
+        .tag-filter[data-tag="compositionality"] { border-color: var(--tag-compositionality); color: var(--tag-compositionality); }
+        .tag-filter[data-tag="pragmatics"] { border-color: var(--tag-pragmatics); color: var(--tag-pragmatics); }
+        .tag-filter[data-tag="vision-language"] { border-color: var(--tag-vision-language); color: var(--tag-vision-language); }
+        .tag-filter[data-tag="robotics"] { border-color: var(--tag-robotics); color: var(--tag-robotics); }
+
+        /* Filled background for active state */
+        .tag-filter[data-tag="few-shot"].active { background: var(--tag-few-shot); color: white; }
+        .tag-filter[data-tag="mech-interp"].active { background: var(--tag-mech-interp); color: white; }
+        .tag-filter[data-tag="compositionality"].active { background: var(--tag-compositionality); color: white; }
+        .tag-filter[data-tag="pragmatics"].active { background: var(--tag-pragmatics); color: white; }
+        .tag-filter[data-tag="vision-language"].active { background: var(--tag-vision-language); color: white; }
+        .tag-filter[data-tag="robotics"].active { background: var(--tag-robotics); color: white; }
+
+        .clear-filters {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.4rem 0.5rem;
+            text-decoration: underline;
+        }
+
+        .clear-filters:hover {
+            color: var(--text-primary);
+        }
+
+        /* Publications */
+        .publications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .publication {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .publication:hover {
+            border-color: var(--border-dark);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .publication.hidden {
+            display: none;
+        }
+
+        .pub-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .pub-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            color: var(--accent-primary);
+        }
+
+        .pub-authors {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-authors .me {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .pub-venue {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .pub-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pub-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .pub-tag.few-shot { background: var(--tag-few-shot); }
+        .pub-tag.mech-interp { background: var(--tag-mech-interp); }
+        .pub-tag.compositionality { background: var(--tag-compositionality); }
+        .pub-tag.pragmatics { background: var(--tag-pragmatics); }
+        .pub-tag.vision-language { background: var(--tag-vision-language); }
+        .pub-tag.robotics { background: var(--tag-robotics); }
+
+        .pub-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .pub-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .pub-link:hover {
+            text-decoration: underline;
+        }
+
+        .pub-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* BibTeX modal */
+        .bibtex-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .bibtex-modal.active {
+            display: flex;
+        }
+
+        .bibtex-content {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bibtex-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bibtex-header h3 {
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .bibtex-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 0.5rem;
+        }
+
+        .bibtex-close:hover {
+            color: var(--text-primary);
+        }
+
+        .bibtex-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .bibtex-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .bibtex-copy {
+            margin-top: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .bibtex-copy:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image,
+            .profile-placeholder {
+                margin: 0 auto;
+            }
+
+            .header-links {
+                justify-content: center;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        /* Utility */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-name">Chancharik Mitra</a>
+            <div class="nav-links">
+                <a href="#about" class="active">About</a>
+                <a href="#publications">Publications</a>
+                <!-- Add more nav items here as needed -->
+                <!-- <a href="#teaching">Teaching</a> -->
+                <!-- <a href="#talks">Talks</a> -->
+                <div class="theme-toggle">
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle dark mode">
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Header / About -->
+        <header class="header" id="about">
+            <div class="header-content">
+                <div class="profile-placeholder">
+                    Profile Photo
+                    <!-- Replace with: <img src="media/profile.jpg" alt="Chancharik Mitra" class="profile-image"> -->
+                </div>
+                <div class="header-info">
+                    <h1>Chancharik Mitra</h1>
+                    <p class="tagline">MS in Machine Learning Student at Carnegie Mellon University</p>
+                    
+                    <div class="header-links">
+                        <a href="mailto:chancharikm@gmail.com">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                            chancharikm [at] gmail [dot] com
+                        </a>
+                        <a href="https://scholar.google.com/" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+                            Scholar
+                        </a>
+                        <a href="https://linkedin.com/in/" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://x.com/" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            X
+                        </a>
+                        <a href="media/cv.pdf" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            CV
+                        </a>
+                    </div>
+
+                    <p class="bio">
+                        I develop AI systems that leverage pretrained knowledge to efficiently adapt to new tasks and environments, much like human reasoning under a "poverty of stimulus." My research focuses on <strong>few-shot adaptation via mechanistic interpretability</strong> and <strong>systematic generalization through compositional and pragmatic reasoning</strong>.
+                        <br><br>
+                        I am fortunate to be advised by <a href="#" class="advisor-link">Prof. Deva Ramanan</a> (CMU) and have previously worked with <a href="#" class="advisor-link">Prof. Trevor Darrell</a> (UC Berkeley) and <a href="#" class="advisor-link">Prof. Narges Norouzi</a> (UC Berkeley). My work has been recognized with a <strong>NeurIPS D&B Spotlight</strong> and an <strong>IEEE MASS Best Workshop Paper Award</strong>.
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Research Figure -->
+        <section class="research-figure-section" id="research-overview">
+            <div class="research-figure-container" onclick="openFigureOverlay()">
+                <div class="figure-expand-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 3 21 3 21 9"/>
+                        <polyline points="9 21 3 21 3 15"/>
+                        <line x1="21" y1="3" x2="14" y2="10"/>
+                        <line x1="3" y1="21" x2="10" y2="14"/>
+                    </svg>
+                    Click to expand
+                </div>
+                <div class="research-figure-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <path d="m21 15-5-5L5 21"/>
+                    </svg>
+                    Research Overview Figure
+                    <!-- Replace with: <img src="media/research-overview.png" alt="Research Overview" class="research-figure"> -->
+                </div>
+                <div class="figure-caption">
+                    <strong>Research Overview:</strong> My work unites mechanistic interpretability with few-shot learning to enable efficient model adaptation, while leveraging compositional and pragmatic frameworks for systematic generalization in vision-language and robotics tasks.
+                    <br>
+                    <a href="media/research-overview.png" class="figure-link" onclick="event.stopPropagation();" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        Direct link to figure
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Figure Overlay -->
+        <div class="figure-overlay" id="figureOverlay" onclick="closeFigureOverlay()">
+            <button class="figure-overlay-close" onclick="closeFigureOverlay()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <img src="media/research-overview.png" alt="Research Overview - Full Size">
+        </div>
+
+        <!-- Publications -->
+        <section id="publications">
+            <div class="section-header">
+                <h2 class="section-title">Publications</h2>
+            </div>
+
+            <div class="tag-filters">
+                <button class="tag-filter" data-tag="few-shot" onclick="toggleFilter('few-shot')">Few-Shot</button>
+                <button class="tag-filter" data-tag="mech-interp" onclick="toggleFilter('mech-interp')">Mechanistic Interpretability</button>
+                <button class="tag-filter" data-tag="compositionality" onclick="toggleFilter('compositionality')">Compositionality</button>
+                <button class="tag-filter" data-tag="pragmatics" onclick="toggleFilter('pragmatics')">Pragmatics</button>
+                <button class="tag-filter" data-tag="vision-language" onclick="toggleFilter('vision-language')">Vision-Language</button>
+                <button class="tag-filter" data-tag="robotics" onclick="toggleFilter('robotics')">Robotics</button>
+                <button class="clear-filters" onclick="clearFilters()">Clear all</button>
+            </div>
+
+            <div class="publications-list" id="publicationsList">
+                <!-- Publications will be rendered here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Add more sections here as needed -->
+        <!-- 
+        <section id="teaching">
+            <h2 class="section-title">Teaching</h2>
+        </section>
+        
+        <section id="talks">
+            <h2 class="section-title">Talks</h2>
+        </section>
+        -->
+
+    </main>
+
+    <!-- BibTeX Modal -->
+    <div class="bibtex-modal" id="bibtexModal">
+        <div class="bibtex-content">
+            <div class="bibtex-header">
+                <h3>BibTeX Citation</h3>
+                <button class="bibtex-close" onclick="closeBibtexModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="bibtex-body">
+                <pre class="bibtex-code" id="bibtexCode"></pre>
+                <button class="bibtex-copy" onclick="copyBibtex()">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Chancharik Mitra</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme (dark is default)
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        // ============================================
+        // PUBLICATIONS DATA - Edit this to add papers
+        // ============================================
+        const publications = [
+            {
+                title: "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+                authors: ["Chancharik Mitra", "Yusen Luo", "Raj Saravanan", "Dantong Niu", "Anirudh Pai", "Jesse Thomason", "Trevor Darrell", "Abrar Anwar", "Deva Ramanan", "Roei Herzig"],
+                venue: "Submitted to IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026",
+                year: 2026,
+                tags: ["few-shot", "mech-interp", "robotics", "vision-language"],
+                links: { paper: "#", code: "#", project: "#" },
+                bibtex: `@article{mitra2026robotic,
+  title={Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations},
+  author={Mitra, Chancharik and Luo, Yusen and Saravanan, Raj and Niu, Dantong and Pai, Anirudh and Thomason, Jesse and Darrell, Trevor and Anwar, Abrar and Ramanan, Deva and Herzig, Roei},
+  journal={arXiv preprint},
+  year={2026}
+}`
+            },
+            {
+                title: "Building a Precise Video Language with Human-AI Oversight",
+                authors: ["Chancharik Mitra*", "Siyuan Cen*", "Zhiqiu Lin*", "Isaac Li", "Yuhan Huang", "Yu Tong Tiffany Ling", "Hewei Wang", "Irene Pi", "Shihang Zhu", "Yili Han", "Yilun Du", "Deva Ramanan"],
+                venue: "Submitted to IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026",
+                year: 2026,
+                tags: ["compositionality", "vision-language"],
+                links: { paper: "#" },
+                bibtex: `@article{mitra2026building,
+  title={Building a Precise Video Language with Human-AI Oversight},
+  author={Mitra, Chancharik and Cen, Siyuan and Lin, Zhiqiu and Li, Isaac and Huang, Yuhan and Ling, Yu Tong Tiffany and Wang, Hewei and Pi, Irene and Zhu, Shihang and Han, Yili and Du, Yilun and Ramanan, Deva},
+  journal={arXiv preprint},
+  year={2026}
+}`
+            },
+            {
+                title: "Activation Reward Models for Few-Shot Model Alignment",
+                authors: ["Tianning Chai", "Chancharik Mitra", "Brandon Huang", "Gautam Rajendrakumar Gare", "Zhiqiu Lin", "Assaf Arbelle", "Leonid Karlinsky", "Rogerio Feris", "Trevor Darrell", "Deva Ramanan", "Roei Herzig"],
+                venue: "Submission to Annual Meeting of the Association for Computational Linguistics (ACL), 2026",
+                year: 2026,
+                tags: ["few-shot", "mech-interp", "vision-language"],
+                links: { paper: "https://arxiv.org/abs/2507.01368" },
+                bibtex: `@article{chai2025activation,
+  title={Activation Reward Models for Few-Shot Model Alignment},
+  author={Chai, Tianning and Mitra, Chancharik and Huang, Brandon and Gare, Gautam Rajendrakumar and Lin, Zhiqiu and Arbelle, Assaf and Karlinsky, Leonid and Feris, Rogerio and Darrell, Trevor and Ramanan, Deva and others},
+  journal={arXiv preprint arXiv:2507.01368},
+  year={2025}
+}`
+            },
+            {
+                title: "Enhancing Few-Shot Vision-Language Classification with Sparse Attention Vectors",
+                authors: ["Chancharik Mitra", "Brandon Huang", "Tianning Chai", "Zhiqiu Lin", "Assaf Arbelle", "Rogerio Feris", "Leonid Karlinsky", "Trevor Darrell", "Deva Ramanan", "Roei Herzig"],
+                venue: "International Conference on Computer Vision (ICCV), 2025",
+                year: 2025,
+                tags: ["few-shot", "mech-interp", "vision-language"],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mitra2025enhancing,
+  title={Enhancing Few-Shot Vision-Language Classification with Large Multimodal Model Features},
+  author={Mitra, Chancharik and Huang, Brandon and Chai, Tianning and Lin, Zhiqiu and Arbelle, Assaf and Feris, Rogerio and Karlinsky, Leonid and Darrell, Trevor and Ramanan, Deva and Herzig, Roei},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={2760--2772},
+  year={2025}
+}`
+            },
+            {
+                title: "CameraBench: Towards Understanding Camera Motions in Any Video",
+                authors: ["Zhiqiu Lin*", "Siyuan Cen*", "Daniel Jiang", "Jay Karhade", "Hewei Wang", "Chancharik Mitra", "Tiffany Ling", "Yuhan Huang", "Sifan Liu", "Mingyu Chen", "et al."],
+                venue: "Conference on Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track (Spotlight), 2025",
+                year: 2025,
+                tags: ["compositionality", "vision-language"],
+                links: { paper: "https://arxiv.org/abs/2504.15376" },
+                bibtex: `@article{lin2025towards,
+  title={Towards Understanding Camera Motions in Any Video},
+  author={Lin, Zhiqiu and Cen, Siyuan and Jiang, Daniel and Karhade, Jay and Wang, Hewei and Mitra, Chancharik and Ling, Tiffany and Huang, Yuhan and Liu, Sifan and Chen, Mingyu and others},
+  journal={arXiv preprint arXiv:2504.15376},
+  year={2025}
+}`
+            },
+            {
+                title: "Less is More Tokens: Efficient Math Reasoning via Difficulty-Aware Chain-of-Thought Distillation",
+                authors: ["Abdul Waheed", "Chancharik Mitra", "Laurie Z. Wang", "Deva Ramanan", "Bhiksha Raj"],
+                venue: "NeurIPS Workshop on Multimodal Algorithmic Reasoning, 2025",
+                year: 2025,
+                tags: ["compositionality"],
+                links: { paper: "https://arxiv.org/abs/2509.05226" },
+                bibtex: `@article{waheed2025less,
+  title={Less is More Tokens: Efficient Math Reasoning via Difficulty-Aware Chain-of-Thought Distillation},
+  author={Waheed, Abdul and Mitra, Chancharik and Wang, Laurie Z and Ramanan, Deva and Raj, Bhiksha},
+  journal={arXiv preprint arXiv:2509.05226},
+  year={2025}
+}`
+            },
+            {
+                title: "Analyzing Pedagogical Quality and Efficiency of LLM Responses with TA Feedback to Live Student Questions",
+                authors: ["Chancharik Mitra", "Mihran Miroyan", "Rishi Jain", "Gireeja Ranade", "Narges Norouzi"],
+                venue: "ACM Technical Symposium on Computer Science Education (SIGCSE), 2025",
+                year: 2025,
+                tags: [],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{miroyan2025analyzing,
+  title={Analyzing Pedagogical Quality and Efficiency of LLM Responses with TA Feedback to Live Student Questions},
+  author={Miroyan, Mihran and Mitra, Chancharik and Jain, Rishi and Ranade, Gireeja and Norouzi, Narges},
+  booktitle={Proceedings of the 56th ACM Technical Symposium on Computer Science Education V. 1},
+  pages={770--776},
+  year={2025}
+}`
+            },
+            {
+                title: "Scaling Up Support: Evaluating the Impact of AI-Powered Responses versus Human Teaching Assistants in Large-Scale CS1 Discussion Forum",
+                authors: ["Meenakshi Mittal*", "Azalea Bailey*", "Victoria Phelps*", "Rose Niousha", "Mihran Miroyan", "Chancharik Mitra", "Rishi Jain", "Gireeja Ranade", "Narges Norouzi"],
+                venue: "ACM Technical Symposium on Computer Science Education (SIGCSE), 2025",
+                year: 2025,
+                tags: [],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mittal2025raising,
+  title={Raising the Bar: Automating Consistent and Equitable Student Support with LLMs},
+  author={Mittal, Meenakshi and Bailey, Azalea and Phelps, Victoria and Miroyan, Mihran and Mitra, Chancharik and Jain, Rishi and Niousha, Rose and Ranade, Gireeja and Norouzi, Narges},
+  booktitle={Proceedings of the 56th ACM Technical Symposium on Computer Science Education V. 2},
+  pages={1549--1550},
+  year={2025}
+}`
+            },
+            {
+                title: "EduMod-LLM: A Modular Approach for Designing Flexible and Transparent Educational Assistants",
+                authors: ["Meenakshi Mittal", "Rishi Khare", "Mihran Miroyan", "Chancharik Mitra", "Narges Norouzi"],
+                venue: "AAAI Conference on Artificial Intelligence, 2025",
+                year: 2025,
+                tags: [],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mittal2025edumod,
+  title={EduMod-LLM: A Modular Approach for Designing Flexible and Transparent Educational Assistants},
+  author={Mittal, Meenakshi and Khare, Rishi and Miroyan, Mihran and Mitra, Chancharik and Norouzi, Narges},
+  booktitle={AAAI Conference on Artificial Intelligence},
+  year={2025}
+}`
+            },
+            {
+                title: "Multimodal Task Vectors Enable Many-Shot Multimodal In-Context Learning",
+                authors: ["Brandon Huang*", "Chancharik Mitra*", "Assaf Arbelle", "Leonid Karlinsky", "Trevor Darrell", "Roei Herzig"],
+                venue: "Conference on Neural Information Processing Systems (NeurIPS), 2024",
+                year: 2024,
+                tags: ["few-shot", "mech-interp", "vision-language"],
+                links: { paper: "https://arxiv.org/abs/2406.15334" },
+                bibtex: `@article{huang2024multimodal,
+  title={Multimodal Task Vectors Enable Many-Shot Multimodal In-Context Learning},
+  author={Huang, Brandon and Mitra, Chancharik and Arbelle, Assaf and Karlinsky, Leonid and Darrell, Trevor and Herzig, Roei},
+  journal={arXiv preprint arXiv:2406.15334},
+  year={2024}
+}`
+            },
+            {
+                title: "Compositional Chain-of-Thought Prompting for Large Multimodal Models",
+                authors: ["Chancharik Mitra", "Brandon Huang", "Trevor Darrell", "Roei Herzig"],
+                venue: "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
+                year: 2024,
+                tags: ["compositionality", "vision-language"],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mitra2024compositional,
+  title={Compositional Chain-of-Thought Prompting for Large Multimodal Models},
+  author={Mitra, Chancharik and Huang, Brandon and Darrell, Trevor and Herzig, Roei},
+  booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2024}
+}`
+            },
+            {
+                title: "Which One? Leveraging Context Between Objects and Multiple Views for Language Grounding",
+                authors: ["Chancharik Mitra*", "Abrar Anwar*", "Rodolfo Corona", "Dan Klein", "Trevor Darrell", "Jesse Thomason"],
+                venue: "North American Chapter of the Association for Computational Linguistics (NAACL), 2024",
+                year: 2024,
+                tags: ["pragmatics", "vision-language"],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mitra2024one,
+  title={Which One? Leveraging Context Between Objects and Multiple Views for Language Grounding},
+  author={Mitra, Chancharik and Anwar, Abrar and Corona, Rodolfo and Klein, Dan and Darrell, Trevor and Thomason, Jesse},
+  booktitle={North American Chapter of the Association for Computational Linguistics (NAACL)},
+  year={2024}
+}`
+            },
+            {
+                title: "RetLLM-E: Retrieval-Prompt Strategy for Question-Answering on Student Discussion Forums",
+                authors: ["Chancharik Mitra", "Mihran Miroyan", "Rishi Jain", "Vedant Kumud", "Gireeja Ranade", "Narges Norouzi"],
+                venue: "AAAI Conference on Artificial Intelligence, 2024",
+                year: 2024,
+                tags: [],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mitra2024retllm,
+  title={RetLLM-E: Retrieval-Prompt Strategy for Question-Answering on Student Discussion Forums},
+  author={Mitra, Chancharik and Miroyan, Mihran and Jain, Rishi and Kumud, Vedant and Ranade, Gireeja and Norouzi, Narges},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={21},
+  pages={23215--23223},
+  year={2024}
+}`
+            },
+            {
+                title: "Elevating Learning Experiences: Leveraging Large Language Models as Student-Facing Assistants in Discussion Forums",
+                authors: ["Chancharik Mitra", "Mihran Miroyan", "Rishi Jain", "Vedant Kumud", "Gireeja Ranade", "Narges Norouzi"],
+                venue: "ACM Technical Symposium on Computer Science Education (SIGCSE), 2024",
+                year: 2024,
+                tags: [],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mitra2024elevating,
+  title={Elevating Learning Experiences: Leveraging Large Language Models as Student-Facing Assistants in Discussion Forums},
+  author={Mitra, Chancharik and Miroyan, Mihran and Jain, Rishi and Kumud, Vedant and Ranade, Gireeja and Norouzi, Narges},
+  booktitle={Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 2},
+  pages={1752--1753},
+  year={2024}
+}`
+            },
+            {
+                title: "Geospatial Analysis To Quantify Spatial Heterogeneity Of Tumor Microenvironment",
+                authors: ["Jin Young Yoo", "Chancharik Mitra", "Yang Yue", "Aiman Soliman", "Zeynep Madak-Erdogan"],
+                venue: "Journal of the Endocrine Society, 2023",
+                year: 2023,
+                tags: [],
+                links: { paper: "#" },
+                bibtex: `@article{yoo2023thu500,
+  title={THU500 Geospatial Analysis To Quantify Spatial Heterogeneity Of Tumor Microenvironment},
+  author={Yoo, Jin Young and Mitra, Chancharik and Yue, Yang and Soliman, Aiman and Erdogan, Zeynep Madak},
+  journal={Journal of the Endocrine Society},
+  volume={7},
+  number={Supplement\\_1},
+  pages={bvad114--2128},
+  year={2023},
+  publisher={Oxford University Press US}
+}`
+            },
+            {
+                title: "Spatial Analysis of Tumor Heterogeneity Using Machine Learning Techniques",
+                authors: ["Chancharik Mitra", "Jin Young Yoo", "Zeynep Madak-Erdogan", "Aiman Soliman"],
+                venue: "IEEE International Conference on Mobile Ad Hoc and Smart Systems (MASS), 2022 (Best Paper Award at REUNS Workshop)",
+                year: 2022,
+                tags: [],
+                links: { paper: "#" },
+                bibtex: `@inproceedings{mitra2022spatial,
+  title={Spatial Analysis of Tumor Heterogeneity Using Machine Learning Techniques},
+  author={Mitra, Chancharik and Yoo, Jin Young and Madak-Erdogan, Zeynep and Soliman, Aiman},
+  booktitle={2022 IEEE 19th International Conference on Mobile Ad Hoc and Smart Systems (MASS)},
+  pages={781--786},
+  year={2022},
+  organization={IEEE}
+}`
+            }
+        ];
+
+        // ============================================
+        // RENDERING & FILTERING LOGIC
+        // ============================================
+        
+        let activeFilters = new Set();
+
+        function renderPublications() {
+            const container = document.getElementById('publicationsList');
+            container.innerHTML = '';
+
+            publications.forEach((pub, index) => {
+                const hasActiveFilter = activeFilters.size === 0 || 
+                    pub.tags.some(tag => activeFilters.has(tag));
+
+                const pubEl = document.createElement('div');
+                pubEl.className = `publication ${hasActiveFilter ? '' : 'hidden'}`;
+                pubEl.dataset.index = index;
+
+                const authorsHtml = pub.authors.map(author => 
+                    author.includes('Chancharik Mitra') 
+                        ? `<span class="me">${author}</span>` 
+                        : author
+                ).join(', ');
+
+                const tagsHtml = pub.tags.map(tag => {
+                    const tagLabels = {
+                        'few-shot': 'Few-Shot',
+                        'mech-interp': 'Mech. Interp.',
+                        'compositionality': 'Compositionality',
+                        'pragmatics': 'Pragmatics',
+                        'vision-language': 'Vision-Language',
+                        'robotics': 'Robotics'
+                    };
+                    return `<span class="pub-tag ${tag}">${tagLabels[tag]}</span>`;
+                }).join('');
+
+                let linksHtml = '';
+                if (pub.links.paper) linksHtml += `<a href="${pub.links.paper}" class="pub-link" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Paper</a>`;
+                if (pub.links.code) linksHtml += `<a href="${pub.links.code}" class="pub-link" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>`;
+                if (pub.links.project) linksHtml += `<a href="${pub.links.project}" class="pub-link" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Project</a>`;
+                linksHtml += `<button class="pub-link" onclick="showBibtex(${index})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>BibTeX</button>`;
+
+                pubEl.innerHTML = `
+                    <h3 class="pub-title"><a href="${pub.links.paper || '#'}" target="_blank">${pub.title}</a></h3>
+                    <p class="pub-authors">${authorsHtml}</p>
+                    <p class="pub-venue">${pub.venue}</p>
+                    ${tagsHtml ? `<div class="pub-tags">${tagsHtml}</div>` : ''}
+                    <div class="pub-links">${linksHtml}</div>
+                `;
+
+                container.appendChild(pubEl);
+            });
+        }
+
+        function toggleFilter(tag) {
+            const btn = document.querySelector(`.tag-filter[data-tag="${tag}"]`);
+            if (activeFilters.has(tag)) {
+                activeFilters.delete(tag);
+                btn.classList.remove('active');
+            } else {
+                activeFilters.add(tag);
+                btn.classList.add('active');
+            }
+            renderPublications();
+        }
+
+        function clearFilters() {
+            activeFilters.clear();
+            document.querySelectorAll('.tag-filter').forEach(btn => btn.classList.remove('active'));
+            renderPublications();
+        }
+
+        function showBibtex(index) {
+            const pub = publications[index];
+            document.getElementById('bibtexCode').textContent = pub.bibtex;
+            document.getElementById('bibtexModal').classList.add('active');
+        }
+
+        function closeBibtexModal() {
+            document.getElementById('bibtexModal').classList.remove('active');
+        }
+
+        function copyBibtex() {
+            const bibtex = document.getElementById('bibtexCode').textContent;
+            navigator.clipboard.writeText(bibtex).then(() => {
+                const btn = document.querySelector('.bibtex-copy');
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = 'Copy to Clipboard'; }, 2000);
+            });
+        }
+
+        // Figure overlay
+        function openFigureOverlay() {
+            document.getElementById('figureOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFigureOverlay() {
+            document.getElementById('figureOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBibtexModal();
+                closeFigureOverlay();
+            }
+        });
+
+        // Close bibtex modal when clicking outside
+        document.getElementById('bibtexModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeBibtexModal();
+        });
+
+        // Navigation active state
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize
+        renderPublications();
+    </script>
+</body>
+</html>
