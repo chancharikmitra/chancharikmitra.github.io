@@ -94,13 +94,7 @@ const newsItems = [
             { text: "Paper", url: "https://arxiv.org/abs/2504.15376" }
         ]
     },
-    {
-        date: "Dec 2024",
-        content: "🎊 <em>Multimodal Task Vectors</em> presented at <strong>NeurIPS 2024</strong> main conference!",
-        links: [
-            { text: "Paper", url: "https://arxiv.org/abs/2406.15334" }
-        ]
-    },
+
     // Add more news items here...
 ];
 
@@ -115,7 +109,7 @@ const publications = [
         year: 2026,
         tags: ["few-shot", "mech-interp", "robotics", "vision-language"],
         image: null,
-        links: { paper: "https://arxiv.org/pdf/2511.22697" },
+        links: { paper: "https://arxiv.org/pdf/2511.22697", project: "https://chancharikmitra.github.io/robosteering/"},
         bibtex: `@article{mitra2026robotic,
   title={Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations},
   author={Mitra, Chancharik and Luo, Yusen and Saravanan, Raj and Niu, Dantong and Pai, Anirudh and Thomason, Jesse and Darrell, Trevor and Anwar, Abrar and Ramanan, Deva and Herzig, Roei},
