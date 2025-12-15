@@ -991,6 +991,16 @@ a:visited {
     color: var(--tag-compositionality);
 }
 
+.paper-link {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+}
+
+.paper-link:hover {
+    text-decoration-thickness: 2px;
+}
+
 /* ============================================
    FIGURE IMAGE WRAPPER - Only image is clickable
    ============================================ */
