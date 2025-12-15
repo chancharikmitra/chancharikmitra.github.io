@@ -1006,7 +1006,15 @@ a:visited {
 }
 
 /* ============================================
-   FIGURE IMAGE WRAPPER - Only image is clickable
+   FIX NAVIGATION SCROLL OFFSET
+   ============================================ */
+
+section, header {
+    scroll-margin-top: 80px;
+}
+
+/* ============================================
+   FIGURE IMAGE WRAPPER
    ============================================ */
 
 .figure-image-wrapper {
