@@ -17,7 +17,23 @@ const authorInfo = {
     },
     "Roei Herzig": { 
         url: "https://roeiherz.github.io/",
-        affiliation: "MIT"
+        affiliation: "UC Berkeley"
+    },
+    "Brandon Huang": { 
+        url: "https://scholar.google.com/citations?user=dyD6nsgAAAAJ&hl=en",
+        affiliation: "UC Berkeley"
+    },
+    "Tianning Chai": { 
+        url: "https://skywalkerray.github.io/",
+        affiliation: "UC Berkeley"
+    },
+    "Dantong Niu": {
+        url: "https://dantong88.github.io/",
+        affiliation: "UC Berkeley"
+    },
+    "Anirudh Pai": {
+        url: "https://www.linkedin.com/in/apai25/",
+        affiliation: "UC Berkeley"
     },
     "Jesse Thomason": { 
         url: "https://jessethomason.com/",
@@ -31,13 +47,25 @@ const authorInfo = {
         url: "https://linzhiqiu.github.io/",
         affiliation: "CMU"
     },
+    "Gautam Rajendrakumar Gare": { 
+        url: "https://ggare-cmu.github.io/",
+        affiliation: "CMU"
+    },
+    "Daniel Jiang": { 
+        url: "https://scholar.google.com/citations?user=dVXhd4MAAAAJ&hl=en",
+        affiliation: "CMU"
+    },
+    "Jay Karhade": { 
+        url: "https://jaykarhade.github.io/",
+        affiliation: "CMU"
+    },
     "Abrar Anwar": { 
         url: "https://abraranwar.github.io/",
-        affiliation: "CMU"
+        affiliation: "USC"
     },
     "Yusen Luo": { 
         url: "https://andreasl9z.github.io/yusenluo.github.io/",
-        affiliation: "CMU"
+        affiliation: "USCdanieda"
     },
     "Raj Saravanan": { 
         url: "https://www.linkedin.com/in/raj-saravanan-204854222/",
@@ -46,6 +74,18 @@ const authorInfo = {
     "Siyuan Cen": { 
         url: "https://sy77777en.github.io/",
         affiliation: "CMU"
+    },
+    "Isaac Li": { 
+        url: "https://www.linkedin.com/in/isaac-li-bb381b284/",
+        affiliation: "CMU"
+    },
+    "Yu Tong Tiffany Ling": { 
+        url: "https://www.yttldesign.com/",
+        affiliation: "CMU"
+    },
+    "Hewei Wang": {
+        url: "https://github.com/WangHewei16",
+        affiliation: "Apple"
     },
     "Rodolfo Corona": { 
         url: "https://rcorona.github.io/",
@@ -56,7 +96,7 @@ const authorInfo = {
         affiliation: "UC Berkeley"
     },
     "Gireeja Ranade": { 
-        url: "https://gireeja.eecs.berkeley.edu/",
+        url: "https://people.eecs.berkeley.edu/~gireeja/",
         affiliation: "UC Berkeley"
     },
     "Yilun Du": { 
@@ -68,17 +108,62 @@ const authorInfo = {
         affiliation: "CMU"
     },
     "Leonid Karlinsky": { 
-        url: "https://researcher.watson.ibm.com/researcher/view.php?person=il-LEONID",
-        affiliation: "IBM Research"
+        url: "https://www.linkedin.com/in/leonid-karlinsky/",
+        affiliation: "Xero"
     },
     "Rogerio Feris": { 
         url: "https://rogerioferis.com/",
         affiliation: "IBM Research"
     },
     "Assaf Arbelle": { 
-        url: "https://research.ibm.com/people/assaf-arbelle",
-        affiliation: "IBM Research"
+        url: "https://www.linkedin.com/in/assafarbelle/?originalSubdomain=il",
+        affiliation: "Apple"
     },
+    "Rushikesh Zawar": { 
+        url: "https://scholar.google.com/citations?user=Qaol8LoAAAAJ&hl=en",
+        affiliation: "CMU"
+    },
+    "Xue Bai": { 
+        url: "https://sites.google.com/view/xuebai/home",
+        affiliation: "Adobe"
+    },
+    "Chuang Gan": { 
+        url: "https://embodied-agi.cs.umass.edu/",
+        affiliation: "UMass Amherst"
+    },
+    "Abdul Waheed": { 
+        url: "https://macabdul9.github.io/",
+        affiliation: "CMU"
+    },
+    "Laurie Z. Wang": { 
+        url: "https://www.linkedin.com/in/lauriewangzh/",
+        affiliation: "CMU"
+    },
+    "Meenakshi Mittal": { 
+        url: "https://www.linkedin.com/in/meenakshi-mittal-404087191/",
+        affiliation: "UC Berkeley"
+    },
+    "Mihran Miroyan": { 
+        url: "https://mmiroyan.github.io/",
+        affiliation: "UC Berkeley"
+    },
+    "Rishi Jain": { 
+        url: "https://www.linkedin.com/in/rishi-rj/",
+        affiliation: "UC Berkeley"
+    },
+    "Jin Young Yoo": { 
+        url: "https://scholar.google.com/citations?user=b-GnHO0AAAAJ",
+        affiliation: "UIUC"
+    },
+    "Zeynep Madak-Erdogan": { 
+        url: "https://mel.fshn.illinois.edu/",
+        affiliation: "UIUC"
+    },
+    "Aiman Soliman": { 
+        url: "https://aimansoliman.com/",
+        affiliation: "UIUC"
+    },
+   
     // Add more authors as needed...
 };
 
@@ -124,7 +209,7 @@ const publications = [
         year: 2026,
         tags: ["compositionality", "vision-language"],
         image: null,
-        links: { },
+        links: { paper: "https://drive.google.com/file/d/1iwHsYMTDz23Kk7gCC4Dxyt9gsJ0h-vUV/view?usp=sharing"},
         bibtex: `@article{mitra2026building,
   title={Building a Precise Video Language with Human-AI Oversight},
   author={Mitra, Chancharik and Cen, Siyuan and Lin, Zhiqiu and Li, Isaac and Huang, Yuhan and Ling, Yu Tong Tiffany and Wang, Hewei and Pi, Irene and Zhu, Shihang and Han, Yili and Du, Yilun and Ramanan, Deva},
@@ -164,7 +249,7 @@ const publications = [
     },
     {
         title: "CameraBench: Towards Understanding Camera Motions in Any Video",
-        authors: ["Zhiqiu Lin*", "Siyuan Cen*", "Daniel Jiang", "Jay Karhade", "Hewei Wang", "Chancharik Mitra", "Tiffany Ling", "Yuhan Huang", "Sifan Liu", "Mingyu Chen", "et al."],
+        authors: ["Zhiqiu Lin*", "Siyuan Cen*", "Daniel Jiang", "Jay Karhade", "Hewei Wang", "Chancharik Mitra", "Yu Tong Tiffany Ling", "Yuhan Huang", "Sifan Liu", "Mingyu Chen", "Rushikesh Zawar", "Xue Bai", "Yilun Du", "Chuang Gan", "Deva Ramanan"],
         venue: "Conference on Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track (Spotlight), 2025",
         year: 2025,
         tags: ["compositionality", "vision-language"],
