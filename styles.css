@@ -932,6 +932,82 @@ footer {
 }
 
 /* ============================================
+   LINK COLORS - Prevent purple visited state
+   ============================================ */
+
+/* Keep all links their original color even after visiting */
+a:visited {
+    color: inherit;
+}
+
+.header-links a:visited,
+.advisor-link:visited,
+.figure-link:visited {
+    color: var(--accent-primary);
+}
+
+.pub-link:visited,
+.news-link:visited {
+    color: var(--accent-primary);
+}
+
+/* ============================================
+   PAPER LINKS - Color-coded by research area
+   ============================================ */
+
+.paper-link {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.paper-link:hover {
+    text-decoration: underline;
+}
+
+/* Few-shot / Mech-interp links (purple-cyan) */
+.paper-link.fewshot,
+.paper-link.fewshot:visited {
+    color: var(--tag-few-shot);
+}
+
+/* Compositionality links (orange) */
+.paper-link.compositionality,
+.paper-link.compositionality:visited {
+    color: var(--tag-compositionality);
+}
+
+/* Pragmatics links (pink) */
+.paper-link.pragmatics,
+.paper-link.pragmatics:visited {
+    color: var(--tag-pragmatics);
+}
+
+/* Caption section headings */
+.caption-heading.fewshot {
+    color: var(--tag-few-shot);
+}
+
+.caption-heading.compositionality {
+    color: var(--tag-compositionality);
+}
+
+/* ============================================
+   FIGURE IMAGE WRAPPER - Only image is clickable
+   ============================================ */
+
+.figure-image-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.figure-image-wrapper:hover .figure-expand-hint {
+    opacity: 1;
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+
+/* ============================================
    UTILITY
    ============================================ */
 .visually-hidden {
