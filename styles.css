@@ -991,6 +991,10 @@ a:visited {
     color: var(--tag-compositionality);
 }
 
+.caption-heading.pragmatics {
+    color: var(--tag-pragmatics);
+}
+
 .paper-link {
     text-decoration: underline;
     text-underline-offset: 2px;
