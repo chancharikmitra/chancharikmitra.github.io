@@ -99,43 +99,37 @@
 
         <!-- Research Figure -->
         <section class="research-figure-section" id="research-overview">
-            <div class="research-figure-container" onclick="openFigureOverlay()">
-                <div class="figure-expand-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15 3 21 3 21 9"/>
-                        <polyline points="9 21 3 21 3 15"/>
-                        <line x1="21" y1="3" x2="14" y2="10"/>
-                        <line x1="3" y1="21" x2="10" y2="14"/>
-                    </svg>
-                    Click to expand
-                </div>
-                <div class="research-figure-placeholder">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                        <path d="m21 15-5-5L5 21"/>
-                    </svg>
-                    Research Overview Figure
+            <div class="research-figure-container">
+                <div class="figure-image-wrapper" onclick="openFigureOverlay()">
+                    <div class="figure-expand-hint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 3 21 3 21 9"/>
+                            <polyline points="9 21 3 21 3 15"/>
+                            <line x1="21" y1="3" x2="14" y2="10"/>
+                            <line x1="3" y1="21" x2="10" y2="14"/>
+                        </svg>
+                        Click to expand
+                    </div>
                     <img src="media/research-overview.png" alt="Research Overview" class="research-figure">
                 </div>
                 <div class="figure-caption">
                     <strong>Research Overview:</strong> My work addresses the <em>pretraining-deployment disconnect</em>—while foundation models learn from massive diverse data, they struggle to adapt to novel deployment contexts like new robotic environments or fine-grained video control.
                     <br><br>
-                    <strong>Few-Shot Mechanistic Interpretability (left):</strong> I develop methods that extract and steer task-relevant internal representations, enabling targeted adaptation from just a few examples—without expensive fine-tuning. This approach has proven effective for vision-language classification 
-                    [<a href="https://arxiv.org/abs/2406.15334" target="_blank">Multimodal Task Vectors</a>, 
-                    <a href="https://arxiv.org/abs/2412.00142" target="_blank">Sparse Attention Vectors</a>], 
+                    <strong class="caption-heading fewshot">Few-Shot Mechanistic Interpretability (left):</strong> I develop methods that extract and steer task-relevant internal representations, enabling targeted adaptation from just a few examples—without expensive fine-tuning. This approach has proven effective for vision-language classification 
+                    [<a href="https://arxiv.org/abs/2406.15334" class="paper-link fewshot" target="_blank">Multimodal Task Vectors</a>, 
+                    <a href="https://arxiv.org/abs/2412.00142" class="paper-link fewshot" target="_blank">Sparse Attention Vectors</a>], 
                     reward modeling 
-                    [<a href="https://arxiv.org/abs/2507.01368" target="_blank">Activation Reward Models</a>], 
+                    [<a href="https://arxiv.org/abs/2507.01368" class="paper-link fewshot" target="_blank">Activation Reward Models</a>], 
                     and robotic manipulation 
-                    [<a href="https://arxiv.org/abs/2511.22697" target="_blank">Mechanistic VLA Finetuning</a>].
+                    [<a href="https://arxiv.org/abs/2511.22697" class="paper-link fewshot" target="_blank">Mechanistic VLA Finetuning</a>].
                     <br><br>
-                    <strong>Compositional & Contextual Reasoning (right):</strong> I leverage cognitive and linguistic frameworks to achieve systematic generalization. For <em>compositionality</em>, I study how models can combine known primitives (like camera motions or visual concepts) to understand and generate novel combinations 
-                    [<a href="https://arxiv.org/abs/2311.17076" target="_blank">Compositional CoT</a>, 
-                    <a href="https://arxiv.org/abs/2504.15376" target="_blank">CameraBench</a>]. 
+                    <strong class="caption-heading compositionality">Compositional & Contextual Reasoning (right):</strong> I leverage cognitive and linguistic frameworks to achieve systematic generalization. For <em>compositionality</em>, I study how models can combine known primitives (like camera motions or visual concepts) to understand and generate novel combinations 
+                    [<a href="https://arxiv.org/abs/2311.17076" class="paper-link compositionality" target="_blank">Compositional CoT</a>, 
+                    <a href="https://arxiv.org/abs/2504.15376" class="paper-link compositionality" target="_blank">CameraBench</a>]. 
                     For <em>pragmatic reasoning</em>, I develop methods that use contextual cues for unambiguous grounding in embodied settings 
-                    [<a href="https://arxiv.org/abs/2311.06694" target="_blank">Which One?</a>].
+                    [<a href="https://arxiv.org/abs/2311.06694" class="paper-link pragmatics" target="_blank">Which One?</a>].
                     <br>
-                    <a href="media/research-overview.png" class="figure-link" onclick="event.stopPropagation();" target="_blank">
+                    <a href="media/research-overview.png" class="figure-link" target="_blank">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                         View full size
                     </a>
