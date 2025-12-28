@@ -180,6 +180,10 @@ const newsItems = [
         ]
     },
 
+      {
+        date: "Apr 2025",
+        content: "🙏 Grateful to be awarded the <strong>NSF Graduate Research Fellowship</strong> in support of my research!",
+    }
     // Add more news items here...
 ];
 
