@@ -190,7 +190,7 @@ const publications = [
     {
         title: "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
         authors: ["Chancharik Mitra*", "Yusen Luo*", "Raj Saravanan*", "Dantong Niu", "Anirudh Pai", "Jesse Thomason", "Trevor Darrell", "Abrar Anwar", "Deva Ramanan", "Roei Herzig"],
-        venue: "Submitted to IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026",
+        venue: "Submitted 2026",
         year: 2026,
         tags: ["few-shot", "mech-interp", "robotics", "vision-language"],
         image: null,
@@ -205,7 +205,7 @@ const publications = [
     {
         title: "Building a Precise Video Language with Human-AI Oversight",
         authors: ["Chancharik Mitra*", "Siyuan Cen*", "Zhiqiu Lin*", "Isaac Li", "Yuhan Huang", "Yu Tong Tiffany Ling", "Hewei Wang", "Irene Pi", "Shihang Zhu", "Yili Han", "Yilun Du", "Deva Ramanan"],
-        venue: "Submitted to IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026",
+        venue: "Submitted 2026",
         year: 2026,
         tags: ["compositionality", "vision-language"],
         image: null,
